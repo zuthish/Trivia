@@ -8,7 +8,7 @@ response = requests.get(categories_url)
 print(response)
 
 #Getting response in json format and pretty printing it.
-print(response.json())
+
 pprint(response.json())
 
 # Dump the responses in a json file
