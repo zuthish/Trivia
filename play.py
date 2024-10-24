@@ -43,11 +43,13 @@ def display_choices(choices):
 def get_user_choice(num_choices):
     while True:
         try:
-            choice = int(input("Enter your answer(number): "))
+            choice = input("\nEnter your answer(number): ")
+            choice = int(choice)
             if 1 <= choice <= num_choices:
-                print(f"Please enter a number between 1 and {num_choices}")
+                return choice
+            print(f"Please enter a number between 1 and {num_choices}")
         except ValueError:
-            print        
+            print("please enter a valid number")        
 
 
 # play the game
@@ -122,6 +124,28 @@ def main():
             print(f"Please enter a number between 1 and {len(categories)}")
         except ValueError:
             print("Please enter a valid number")    
+
+    while True:
+        try:
+            num_questions = int(input("\nHow many questions would you like (1-50)? "))   
+            if 1 <= num_questions <= 50:
+                break
+            print("Please enter a number between 1 and 50")
+        except ValueError:
+            print("Please enter a valid number")  
+
+    try:
+        play_game(num_questions,category_id)
+
+        play_again = input("\nWould you like to play the game again? (yes/no): ") 
+        if play_again.startswith("y"):
+            main()
+    except KeyboardInterrupt:
+        print("\nGame interupted. Thanks for playing!")
+    except Exception as e:
+        print(f"An error occured: {e}")
+    finally:
+        print("\nGoodbye!")
 
 
 if __name__ == "__main__":
